@@ -1,0 +1,8 @@
+@import '../colors';
+@import '../fonts';
+
+.greeting {
+    color: $turquaise;
+    font: $font__title;
+    text-align: center;
+}
