@@ -1,0 +1,28 @@
+@import '../colors';
+
+h3 {
+    margin-left: 5%;
+}
+.contador {
+    border: 2px solid $purple;
+    color: $purple;
+    display: inline;
+    font-size: 1.5rem;
+    padding: 0.5rem;
+    margin-left: 5%;
+    .resta, .suma {
+        color: $turquaise2;
+        background-color: transparent;
+        border: none;
+        font-size: 2rem;
+        &:focus{
+            outline: none;
+        }
+    }
+    .resta {
+        padding-right: 4rem;
+    }
+    .suma {
+        padding-left: 4rem;
+    }
+}
