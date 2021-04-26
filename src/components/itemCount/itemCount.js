@@ -30,19 +30,3 @@ export const ItemCount = ({stock, initial}) => {
         </div> 
     )
 }
-
-/*
-export const ItemCount = () => {
-    const [contador, setContador] = useState(0)
-
-    return (
-        <div>
-            <h3>Contador</h3>
-            <div className = "contador">
-                <button className = "resta" onClick = {()=>setContador(contador-1)}>-</button>
-                {contador}
-                <button className = "suma" onClick = {()=>setContador(contador+1)}>+</button>
-            </div>
-        </div>
-    )
-}*/

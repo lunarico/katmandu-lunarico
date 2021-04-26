@@ -1,7 +1,6 @@
 import './_navBar.scss'
 import {CartWidget} from '../cartWidget/cartWidget'
 
-
 export const Navbar = () => {
     return (
         <div >

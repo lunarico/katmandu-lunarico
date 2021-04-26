@@ -1,9 +1,12 @@
 @import '../colors';
 @import '../fonts';
 
-.greeting {
-    color: $turquaise;
-    font: $font__title;
-    margin-bottom: 1rem;
+.contLogo {
+    justify-content: center;
+    margin-top: 2rem;
+    margin-bottom: 2rem;
     text-align: center;
+    .logo {
+        width: 250px;
+    }
 }

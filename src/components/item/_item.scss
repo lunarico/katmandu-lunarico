@@ -1,0 +1,25 @@
+@import '../colors';
+@import '../fonts';
+
+.item {
+    border: 0.094rem solid $turquaise;
+    color: $darkGrey;
+    display: block;
+    padding: 0.5rem;
+    margin: 0.5rem 0;
+    text-align: center;
+    width: 20%;
+    img {
+        width: 100%;
+    }
+    h4 {
+        font: $font__nombre;
+        letter-spacing: 0.188rem;
+        margin: 0;
+        text-transform: uppercase;
+    }
+    p {
+        font: $font__precio;
+        margin: 0;    
+    }
+}

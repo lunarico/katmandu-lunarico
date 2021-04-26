@@ -6,5 +6,6 @@ export const ListaProductos = (props) =>
         <div>
             <h1>{producto.nombre}</h1>
             <p>{producto.precio}</p>
+            <img src={producto.img}></img>
         </div>
     ))
