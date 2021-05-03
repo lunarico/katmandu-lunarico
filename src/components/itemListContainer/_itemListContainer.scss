@@ -1,12 +1,12 @@
 @import '../colors';
 @import '../fonts';
 
-.contLogo {
+.contHome {
     justify-content: center;
     margin-top: 2rem;
-    margin-bottom: 2rem;
     text-align: center;
     .logo {
+        margin-bottom: 2rem;
         width: 250px;
     }
 }

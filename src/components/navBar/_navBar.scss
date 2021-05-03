@@ -1,36 +1,45 @@
 @import '../colors';
 @import '../fonts';
 
-header {
+.header {
     background-color: $aqua;
     display: flex;
     height: 3.25rem;
-    justify-content: space-between;
-    .logo {
-        color: $darkGrey;
-        font: $font__logo;
-        letter-spacing: 0.375rem;
-        margin-left: 5rem;  
-        margin-top: 0.875rem;  
-        text-transform: uppercase;
-    }
     nav {
-        margin-right: 10rem;
-        width: 50%;
+        display: flex;
+        width: 100%;
+        justify-content: space-between;
+        h1 {
+            margin-top: 0.5rem; 
+            .logo {
+                color: $darkGrey;
+                font: $font__logo;
+                letter-spacing: 0.375rem;
+                margin-left: 5rem;  
+                text-transform: uppercase;
+                text-decoration: none;
+            }
+        }
         ul {
             display: flex;
             justify-content: space-between;
-            li {
+            margin-right: 5%;
+            width: 50%;
+            .navLink {
                 list-style-type: none;
-                a {
-                    color: $purple;
-                    font: $font__nav;
-                    text-decoration: none;
-                    text-transform: uppercase;
-                    &.shopping {
-                        font-size: 1.125rem;
-                    }
+                color: $purple;
+                font: $font__nav;
+                text-decoration: none;
+                text-transform: uppercase;
+                &.shopping {
+                    font-size: 1.125rem;
                 }
+            }
+            .activeLink {
+                color: $turquaise2; 
+            }
+            ::marker {
+                color: $aqua;
             }
         }
     }

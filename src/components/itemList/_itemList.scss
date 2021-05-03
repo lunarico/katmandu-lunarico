@@ -1,6 +1,33 @@
 @import '../colors';
 @import '../fonts';
 
+.btnProductos {
+    margin: 1rem 0;
+    .btnKatmandu {
+        background: white;
+        border: 0.125rem solid $purblue;
+        border-radius: 0.75em;
+        margin: 0 1.5rem;
+        padding: 0rem 3rem;
+        .btnLink {
+            color: $turquaise2;
+            font: $font__btn;
+            letter-spacing: 0.063rem;
+            text-decoration: none;
+            &:hover, &:active, &:focus{
+                color:$purple;
+            }
+        }
+        &:hover, &:focus{
+            background-color: $aqua;
+            outline: none;
+            .btnLink { 
+                color: $purple;
+            }
+        }
+    }
+}
+
 .listaProductos {
     display: flex;
     flex-wrap: wrap;
@@ -8,23 +35,3 @@
     margin: 3rem 5%;
 }
 
-.btnProductos {
-    text-align: center;
-    margin: 1rem 0;
-    .btnKatmandu {
-        background: white;
-        border: 0.125rem solid $purblue;
-        border-radius: 0.75em;
-        color: $turquaise2;
-        cursor: pointer;
-        font: $font__btn;
-        letter-spacing: 0.063rem;
-        margin: 0 1.5rem;
-        padding: 0rem 3rem;
-        &:hover, &:active, &:focus {
-            color: $purple;
-            background-color: $aqua;
-            outline: none;
-        }
-    }
-}
