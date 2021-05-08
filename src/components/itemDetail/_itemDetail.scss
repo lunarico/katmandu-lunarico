@@ -4,33 +4,47 @@
 .cardDetail {
     border: 0.215rem solid $purblue;
     color: $darkGrey;
-    margin-top: 2rem;
-    padding: 1rem 0;
+    display: flex;
+    margin-top: 3rem;
+    padding: 2.5rem 0 2.5rem 2rem;
     text-align: center;
-    width: 30%;
-    h1 {
-        font: $font__nombre-detail;
-        letter-spacing: 0.375rem;
-        margin: 1rem 0;
-        text-transform: uppercase;
-    }
-    p {
-        font: $font__precio;
-        letter-spacing: 0.125rem;
+    width: 50%;
+    .cardProp {
+        display: block;
         margin: 0.5rem 0;
-    }
-    button {
-        background: white;
-        border: 0.125rem solid $purple;
-        border-radius: 0.5em;
-        color: $turquaise2;
-        cursor: pointer;
-        font: $font__btn;
-        margin: 0.25rem;
-        padding: 0.5rem 1.5rem;
-        &:hover{
-            background-color: $aqua;
-            color: $purple;
+        width: 100%;
+        h1 {
+            font: $font__nombre-detail;
+            letter-spacing: 0.375rem;
+            margin: 0 0 1.5rem 0;
+            text-transform: uppercase;
+        }
+        p {
+            font: $font__precio;
+            letter-spacing: 0.125rem;
+            margin: 2.5rem 0;
+        }
+        .contadorBoton {
+            display: flex;
+            justify-content: center;
+            margin-top: 2rem;
+            .finalizar {
+                background: white;
+                border: 0.125rem solid $purple;
+                border-radius: 0.5em;
+                cursor: pointer;
+                font: $font__btn;
+                font-size: 1.5rem;
+                margin-top: 1.75rem;
+                padding: 1.75rem;
+                text-transform: uppercase;
+                &:hover{
+                    background-color: $aqua;
+                }
+                a {
+                    color: $purple;
+                }
+            }
         }
     }
 }

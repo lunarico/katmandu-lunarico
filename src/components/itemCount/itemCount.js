@@ -1,32 +1,16 @@
 import './_itemCount.scss'
-import {useState} from 'react'
 
-export const ItemCount = ({stock, initial}) => {
+export const ItemCount = ({onSubstract, onAdd, count, finalizarCompra}) => {
 
-    const [contador, setContador] = useState(parseInt(initial))
-
-    const miStockResta = () => {
-        if (contador >= "1") {
-            setContador(contador-1)
-        }else{
-            alert("No tenés productos agregados")
-        }
-    }
-    const miStockSuma = () => {
-        if (contador < stock) {
-            setContador(contador+1)
-        }else{
-            alert("No tenemos más stock")
-        }
-    }
     return (
-        <div>
-            <h3>Contador</h3>
-            <div className = "contador">
-                <button className ="resta" onClick = {miStockResta}>-</button>
-                {contador}
-                <button className = "suma" onClick = {miStockSuma}>+</button>
+        <div className="contadorCont">
+            <div className="contador">
+                <button onClick={onSubstract} className="resta">-</button>
+                {count}
+                <button onClick={onAdd} className="suma">+</button>
             </div>
-        </div> 
+            <button onClick={finalizarCompra} className="addCart">Agregar {count} producto/s al carrito</button>
+        </div>
     )
 }
+export default ItemCount;

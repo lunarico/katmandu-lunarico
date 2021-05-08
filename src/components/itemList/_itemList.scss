@@ -3,35 +3,26 @@
 
 .btnProductos {
     margin: 1rem 0;
+    display: flex;
+    justify-content: center;
     .btnKatmandu {
         background: white;
         border: 0.125rem solid $purblue;
-        border-radius: 0.75em;
+        border-radius: 0.625rem;
         margin: 0 1.5rem;
         padding: 0rem 3rem;
-        .btnLink {
-            color: $turquaise2;
-            font: $font__btn;
-            letter-spacing: 0.063rem;
-            text-decoration: none;
-            &:hover, &:active, &:focus{
-                color:$purple;
-            }
-        }
-        &:hover, &:focus{
+        color: $turquaise2;
+        font: $font__btn;
+        letter-spacing: 0.063rem;
+        &:hover, &:active, &:focus{
             background-color: $aqua;
-            outline: none;
-            .btnLink { 
-                color: $purple;
-            }
+            color:$purple;
         }
     }
 }
-
 .listaProductos {
     display: flex;
     flex-wrap: wrap;
     justify-content: space-between;
     margin: 3rem 5%;
 }
-

@@ -1,20 +1,25 @@
 @import '../colors';
+@import '../fonts';
 
-h3 {
-    margin-left: 5%;
-}
-.contador {
-    border: 2px solid $purple;
-    color: $purple;
-    display: inline;
-    font-size: 1.5rem;
-    padding: 0.5rem;
-    margin-left: 5%;
+.contadorCont {
+    color: $darkGrey;
+    display: flex;
+    flex-wrap: wrap;
+    font-size: 1.375rem;
+    justify-content: center;
+    .contador {
+        border: 2px solid $purple;
+        border-radius: 0.5em;
+        margin-top: 1rem;
+        width: 60%;
+    }
     .resta, .suma {
-        color: $turquaise2;
         background-color: transparent;
         border: none;
-        font-size: 2rem;
+        color: $turquaise2;
+        cursor: pointer;
+        font-size: 2.125rem;
+        padding: 0 1.5rem;
         &:focus{
             outline: none;
         }
@@ -24,5 +29,21 @@ h3 {
     }
     .suma {
         padding-left: 4rem;
+    }
+    .addCart {
+        background: white;
+        border: 0.125rem solid $purple;
+        border-radius: 0.5em;
+        color: $turquaise2;
+        cursor: pointer;
+        font: $font__btn;
+        font-size: 1.125rem;
+        margin-top: 2.75rem;
+        padding: 0.75rem;
+        text-transform: uppercase;
+        &:hover{
+            background-color: $aqua;
+            color: $purple;
+        }
     }
 }

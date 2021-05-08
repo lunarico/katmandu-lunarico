@@ -23,10 +23,10 @@ export const ItemList = () => {
     return (
         <div>
             <div className="btnProductos">
-                <button className="btnKatmandu"><Link to='/category/anillos' className="btnLink">Anillos</Link></button>
-                <button className="btnKatmandu"><Link to='/category/collares' className="btnLink">Collares</Link></button>
-                <button className="btnKatmandu"><Link to='/category/aros' className="btnLink">Aros</Link></button>
-                <button className="btnKatmandu"><Link to='/category/pulseras' className="btnLink">Pulseras</Link></button>
+                <Link to='/category/anillos'><p className="btnKatmandu">Anillos</p></Link>
+                <Link to='/category/collares'><p className="btnKatmandu">Collares</p></Link>
+                <Link to='/category/aros'><p className="btnKatmandu">Aros</p></Link>
+                <Link to='/category/pulseras'><p className="btnKatmandu">Pulseras</p></Link>
             </div>
             <div className="listaProductos">
                 {items.length > 0 ? (
