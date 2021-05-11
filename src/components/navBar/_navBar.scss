@@ -1,7 +1,7 @@
 @import '../colors';
 @import '../fonts';
 
-.header {
+header {
     background-color: $aqua;
     display: flex;
     height: 3.25rem;
@@ -26,13 +26,19 @@
             margin-right: 5%;
             width: 50%;
             .navLink {
-                list-style-type: none;
                 color: $purple;
+                display: flex;
                 font: $font__nav;
+                list-style-type: none;
                 text-decoration: none;
                 text-transform: uppercase;
                 &.shopping {
                     font-size: 1.125rem;
+                    margin-top: 0.125rem;
+                }
+                .quantity {
+                    font-size: 1.125rem;
+                    margin: -0.125rem 0 0 0.5rem;
                 }
             }
             .activeLink {

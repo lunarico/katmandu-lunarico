@@ -4,6 +4,7 @@ import {Productos} from '../products'
 import {Link} from 'react-router-dom';
 import {Item} from '../item/item'
 import './_itemList.scss'
+import '../_general.scss'
 
 export const ItemList = () => {
 

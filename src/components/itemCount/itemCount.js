@@ -1,6 +1,6 @@
 import './_itemCount.scss'
 
-export const ItemCount = ({onSubstract, onAdd, count, finalizarCompra}) => {
+export const ItemCount = ({onSubstract, onAdd, count, addToCart}) => {
 
     return (
         <div className="contadorCont">
@@ -9,7 +9,7 @@ export const ItemCount = ({onSubstract, onAdd, count, finalizarCompra}) => {
                 {count}
                 <button onClick={onAdd} className="suma">+</button>
             </div>
-            <button onClick={finalizarCompra} className="addCart">Agregar {count} producto/s al carrito</button>
+            <button onClick={addToCart} className="addCart">Agregar {count} producto/s al carrito</button>
         </div>
     )
 }

@@ -1,3 +1,56 @@
+@import './colors';
+@import './fonts';
+
 a {
     text-decoration: none;
+}
+
+.listaProductos {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    margin: 3rem 5%;
+}
+
+.card {
+    border: 0.094rem solid $turquaise;
+    color: $darkGrey;
+    display: block;
+    font: $font__nombre-card;
+    padding: 0.5rem;
+    margin: 1rem 0;
+    text-align: center;
+    width: 20%;
+    img {
+        width: 100%;
+    }
+    h4 {
+        letter-spacing: 0.188rem;
+        margin: 0;
+        text-transform: uppercase;
+    }
+    h5 {
+        font-size: 1.075rem;
+        margin: 0.5rem
+    }
+    p{
+        font-size: 1rem;
+
+    }
+    .btnCard {
+        background: white;
+        border: 0.125rem solid $purblue;
+        border-radius: 0.75em;
+        margin: 0.25rem 1.5rem;
+        padding: 0 1.75rem;
+        color: $darkGrey;
+        font: $font__verMas;
+        text-decoration: none;
+        cursor: pointer;
+        &:hover, &:focus{
+            background-color: $aqua;
+            outline: none;
+            color:$purblue;
+        }
+    }
 }

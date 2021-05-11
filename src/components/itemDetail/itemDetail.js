@@ -1,11 +1,13 @@
-import './_itemDetail.scss'
-import ItemCount from '../itemCount/itemCount'
-import { useState } from 'react'
+import './_itemDetail.scss';
+import {CartContext} from '../../context/cartContext'
 import {Link} from 'react-router-dom';
+import {useContext, useState, useEffect} from 'react'
+import ItemCount from '../itemCount/itemCount';
 
 export const ItemDetail = ({props}) => {
 
-    const [contador, setContador] = useState(1)
+    const {addItem, contador, setContador} = useContext(CartContext)
+
     const [mostrarBoton, setMostrarBoton] = useState(true)
     
     const miStockResta = () => {
@@ -24,9 +26,12 @@ export const ItemDetail = ({props}) => {
         }
     }
 
-    const finalizarCompra = () => {
+    const addToCart = () => {
+        addItem(props)
         setMostrarBoton(false)
     }
+
+    useEffect (() => {setContador (0) }, [])
 
     return (
         <div className="cardDetail">
@@ -39,10 +44,8 @@ export const ItemDetail = ({props}) => {
                         <ItemCount 
                             onSubstract= {miStockResta} 
                             onAdd={miStockSuma} 
-                            stock={props.stock} 
-                            count={contador} 
-                            name={props.nombre}
-                            finalizarCompra={finalizarCompra}/>
+                            count={contador}
+                            addToCart={addToCart}/>
                     ) : (
                         <button className="finalizar"><Link to='/cart'>Finalizar compra</Link></button> 
                     )}

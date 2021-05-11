@@ -1,8 +1,8 @@
-import {useParams} from "react-router"
-import {Productos} from '../products'
-import {ItemDetail} from '../itemDetail/itemDetail'
-import { useEffect, useState } from "react/cjs/react.development"
 import './_itemDetailContainer.scss'
+import {useEffect, useState} from "react/cjs/react.development"
+import {ItemDetail} from '../itemDetail/itemDetail'
+import {Productos} from '../products'
+import {useParams} from "react-router"
 
 export const ItemDetailContainer = () => {
     const {itemId} = useParams()
