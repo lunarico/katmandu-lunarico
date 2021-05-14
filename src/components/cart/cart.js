@@ -1,28 +1,36 @@
 import '../_general.scss'
 import './_cart.scss'
 import {CartContext} from "../../context/cartContext";
-import {useContext} from "react";
+import {Fragment, useContext} from "react";
+import {Link} from 'react-router-dom';
 
 export const Cart = () => {
-  const {cart, clearCart, removeFromCart} = useContext(CartContext);
+  const {cart, clearCart, removeFromCart, totalProductPrice, totalPrice} = useContext(CartContext);
 
   return (
     <main className="cart">
       <h2>Mi Carrito</h2>
-      <div class="listaProductos">
         {cart.length > 0 ? (
-          cart.map((props) => (
-            <div className="card">
-              <img src={require(`../../img/${props.imagen}`).default}></img>
-              <h4>{props.nombre}</h4>
-              <h5>${props.precio}</h5>
-              <p>Cantidad en el carrito: {props.quantity}</p>
-              <button onClick={()=> removeFromCart(props.id)} className="btnCard">Quitar del carrito</button>
-            </div>))
+          <Fragment>
+            <div className="listaProductos">
+              {cart.map((props) => (
+                <div className="card">
+                  <img src={require(`../../img/${props.imagen}`).default}></img>
+                  <h4>{props.nombre}</h4>
+                  <p>Cantidad en el carrito: {props.quantity}</p>
+                  <h5>${totalProductPrice(props)}</h5>
+                  <button onClick={()=> removeFromCart(props.id)} className="btnCard">Quitar del carrito</button>
+                </div>))}
+            </div>
+            <h5>Total a pagar: ${totalPrice(cart)}</h5>
+          </Fragment>
           ) : (
-            <p>No tenes productos en el carrito</p> )}
-        </div>
-        {cart.length > 0 ? (<button onClick={clearCart} className="btnClear">Limpiar carrito</button>) : (<p></p>)}
+          <Fragment>
+            <p className="cartVacio">No tenés productos en el carrito</p>
+            <Link to ='/productos' className="btnCart">Ver Productos</Link>
+          </Fragment>)
+        }
+        {cart.length > 1 && <button onClick={clearCart} className="btnCart">Limpiar carrito</button>}
     </main>
   );
 };

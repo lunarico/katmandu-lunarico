@@ -11,7 +11,7 @@
         text-align: center;
         text-transform: uppercase;
     }
-    .btnClear {
+    .btnCart {
         background: white;
         border-radius: 0.5em;
         border: 0.125rem solid $purple;
@@ -21,10 +21,15 @@
         font: $font__btn;
         margin-bottom: 1rem;
         padding: 0.75rem;
+        text-align: center;
         text-transform: uppercase;
         &:hover{
             background-color: $aqua;
             color: $purple;
     }
-}
+    }
+    .cartVacio{
+        margin: 5rem 0;
+        font: $font__nombre-card;
+    }
 }

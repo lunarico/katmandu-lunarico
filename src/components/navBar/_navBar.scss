@@ -23,8 +23,8 @@ header {
         ul {
             display: flex;
             justify-content: space-between;
-            margin-right: 5%;
-            width: 50%;
+            margin-right: 20%;
+            width: 40%;
             .navLink {
                 color: $purple;
                 display: flex;
@@ -35,10 +35,13 @@ header {
                 &.shopping {
                     font-size: 1.125rem;
                     margin-top: 0.125rem;
-                }
-                .quantity {
-                    font-size: 1.125rem;
-                    margin: -0.125rem 0 0 0.5rem;
+                    div {
+                        display: flex;
+                        p {
+                            font-size: 1.125rem;
+                            margin: -0.125rem 0 0 0.5rem;
+                        }
+                    }
                 }
             }
             .activeLink {

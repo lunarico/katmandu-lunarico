@@ -8,8 +8,8 @@ a {
 .listaProductos {
     display: flex;
     flex-wrap: wrap;
-    justify-content: space-between;
-    margin: 3rem 5%;
+    justify-content: center;
+    margin: 2rem 5%;
 }
 
 .card {
@@ -18,8 +18,7 @@ a {
     display: block;
     font: $font__nombre-card;
     padding: 0.5rem;
-    margin: 1rem 0;
-    text-align: center;
+    margin: 1rem 1.25rem;
     width: 20%;
     img {
         width: 100%;
@@ -53,4 +52,10 @@ a {
             color:$purblue;
         }
     }
+}
+
+h5 {
+    font: $font__precio;
+    margin-bottom: 2rem;
+    text-transform: uppercase;
 }
