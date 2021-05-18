@@ -17,7 +17,9 @@ export const CartProvider = ({children}) => {
     
     const addItem = (item) => {
       if (isInCart(item.id)) {
-        setContador(item.quantity+=contador)
+        const newCart = [...cart]
+        newCart.forEach((p) => {(p.id === item.id) && (p.quantity = p.quantity + contador)})
+        setCart(newCart)
       }else{
         item.quantity = contador
         setCart([...cart, item])
@@ -27,11 +29,11 @@ export const CartProvider = ({children}) => {
     const removeFromCart = (itemId) => {
         const newCart = cart.filter((item) => item.id !== itemId);
         setCart(newCart);
-      };
+    };
       
     const clearCart = () => {
         setCart([]);
-      };
+    };
 
     const totalProductPrice = (item) => {
       return item.quantity * item.precio

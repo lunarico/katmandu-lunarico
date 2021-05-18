@@ -7,7 +7,6 @@ import ItemCount from '../itemCount/itemCount';
 export const ItemDetail = ({props}) => {
 
     const {addItem, contador, setContador} = useContext(CartContext)
-
     const [mostrarBoton, setMostrarBoton] = useState(true)
     
     const miStockResta = () => {
@@ -31,11 +30,11 @@ export const ItemDetail = ({props}) => {
         setMostrarBoton(false)
     }
 
-    useEffect (() => {setContador (0) }, [])
+    useEffect (() => {setContador(0)}, [])
 
     return (
         <div className="cardDetail">
-            <img src={props.imagen ? require(`../../img/${props.imagen}`).default:""}></img>
+            <img src={props.imagen}></img>
             <div className="cardProp">
                 <h1>{props.nombre}</h1>
                 <p>${props.precio}</p>

@@ -15,7 +15,7 @@ export const Cart = () => {
             <div className="listaProductos">
               {cart.map((props) => (
                 <div className="card">
-                  <img src={require(`../../img/${props.imagen}`).default}></img>
+                  <img src={props.imagen}></img>
                   <h4>{props.nombre}</h4>
                   <p>Cantidad en el carrito: {props.quantity}</p>
                   <h5>${totalProductPrice(props)}</h5>
