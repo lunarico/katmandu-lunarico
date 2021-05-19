@@ -10,18 +10,17 @@ export const CartProvider = ({children}) => {
     const quantityCount = () => {
       return cart.reduce((acc, item) => (acc += item.quantity), 0);
     };
-
-    const isInCart = (id) => {
-      return cart.find((item) => id === item.id)
-    }
     
     const addItem = (item) => {
-      if (isInCart(item.id)) {
+
+      const isInCart = item => cart.find(product => product.id === item.id);
+
+      if(isInCart(item)) {
         const newCart = [...cart]
-        newCart.forEach((p) => {(p.id === item.id) && (p.quantity = p.quantity + contador)})
-        setCart(newCart)
+        newCart[newCart.findIndex(prod => prod.id === item.id)].quantity += contador;
+        setCart(newCart);
       }else{
-        item.quantity = contador
+        item.quantity = contador;
         setCart([...cart, item])
       }
     };
@@ -37,11 +36,11 @@ export const CartProvider = ({children}) => {
 
     const totalProductPrice = (item) => {
       return item.quantity * item.precio
-    }
+    };
 
     const totalPrice = (cart) => {
       return cart.map(p => totalProductPrice(p)).reduce((a,b) => a + b)
-    } 
+    }; 
 
     return (
         <CartContext.Provider 

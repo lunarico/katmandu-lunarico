@@ -10,26 +10,29 @@ export const ItemList = () => {
 
     const {categoryId} = useParams()
     const [items, setItems] = useState([])
-    const [itemExists, setItemExists] = useState(true)
- 
-    useEffect (() => {
-        setItemExists(true)
-        setItems([])
-        const db = getFirestore()
-        const itemCollection = db.collection("items")
-        const itemCategory = itemCollection.where('categoryId', '==', 'anillos')
-        itemCategory.get().then((querySnapshot) => {
-            const data = querySnapshot.docs.map((doc) => ({...doc.data(), id: doc.id}))
-            setItems(data)
-       
-        }).finally(() => {
-            setTimeout(() => {
-                setItemExists(false)
+    const [itemExists, setItemExists] = useState(false)
 
-            }, 3000)
-        })
+    useEffect(() => {
+        const getProducts = () => {
+            const db = getFirestore();
+            const itemCollection = db.collection('items')
+            
+            if(categoryId){
+                const itemsCategory = itemCollection.where('categoryId', '==', categoryId)
+                itemsCategory.get().then(querySnapshot => {
+                    const itemsFiltered = querySnapshot.docs.map(doc => ({...doc.data(), id: doc.id}));
+                    {querySnapshot !==0 && setItems((itemsFiltered), setItemExists(true))}
+                })
+            }else{
+                itemCollection.get().then(querySnapshot => {
+                    const allItems = querySnapshot.docs.map(doc => ({...doc.data(), id: doc.id}));
+                    {querySnapshot !==0 && setItems((allItems), setItemExists(true))}
+                })
+            }
+        }
+        getProducts();
     }, [categoryId])
-
+ 
     return (
         <div>
             <div className="btnProductos">
@@ -39,16 +42,13 @@ export const ItemList = () => {
                 <Link to='/category/pulseras'><p className="btnKatmandu">Pulseras</p></Link>
             </div>
             <div className="listaProductos">
-                {itemExists ? (items.map ((props) => <Item producto={props} />)
+                {itemExists ? (items.length > 0 ? (items.map ((props) => <Item producto={props} />)
                 ) : (
-                <p>No tenemos productos para mostrar</p>
-                ) }
+                    <p>No tenemos productos para mostrar</p>)
+                ) : (
+                    <p>Cargando...</p>
+                )}
             </div>
         </div>
     )
 }
-
-/*{items.length > 0 ? (
-    items.map((props) => <Item producto={props} />)
-) : (
-    <p>No tenemos productos para mostrar</p>)}*/
