@@ -4,25 +4,21 @@ export const CartContext = createContext()
 
 export const CartProvider = ({children}) => {
   
-    const [contador, setContador] = useState(0)
     const [cart, setCart] = useState([])
 
-    const quantityCount = () => {
-      return cart.reduce((acc, item) => (acc += item.quantity), 0);
-    };
-    
-    const addItem = (item) => {
+    const isInCart = item => cart.find(product => product.id === item.id);
 
-      const isInCart = item => cart.find(product => product.id === item.id);
+    const addItem = (item, quantity) => {
 
       if(isInCart(item)) {
         const newCart = [...cart]
-        newCart[newCart.findIndex(prod => prod.id === item.id)].quantity += contador;
+        newCart[newCart.findIndex(prod => prod.id === item.id)].quantity += quantity;
         setCart(newCart);
-      }else{
-        item.quantity = contador;
-        setCart([...cart, item])
+        return;
       }
+        item.quantity = quantity;
+        setCart([...cart, item])
+
     };
 
     const removeFromCart = (itemId) => {
@@ -42,9 +38,19 @@ export const CartProvider = ({children}) => {
       return cart.map(p => totalProductPrice(p)).reduce((a,b) => a + b)
     }; 
 
+    const actuallyCount = (item, newQuantity) => {
+      const newCart = [...cart];
+      const inCart = isInCart(item);
+      if(inCart) {
+          newCart[newCart.findIndex(prod => prod.id === item.id)].quantity = newQuantity;
+          setCart(newCart);
+          console.log(inCart);
+      }
+  }
+
     return (
         <CartContext.Provider 
-          value ={{cart, contador, setContador, quantityCount, addItem, removeFromCart, clearCart, totalProductPrice, totalPrice}}>
+          value ={{cart, addItem, removeFromCart, clearCart, totalProductPrice, totalPrice, actuallyCount}}>
           {children}
         </CartContext.Provider>
     )

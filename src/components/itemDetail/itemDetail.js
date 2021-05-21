@@ -1,32 +1,19 @@
 import './_itemDetail.scss';
 import {CartContext} from '../../context/cartContext'
+import {ItemCount} from '../itemCount/itemCount';
 import {Link} from 'react-router-dom';
-import {useContext, useState, useEffect} from 'react'
-import ItemCount from '../itemCount/itemCount';
+import {miStockResta, miStockSuma} from '../helper/helper'
+import {useContext, useState, useEffect, Fragment} from 'react'
 
 export const ItemDetail = ({props}) => {
 
-    const {addItem, contador, setContador} = useContext(CartContext)
+    const {addItem} = useContext(CartContext)
     const [mostrarBoton, setMostrarBoton] = useState(true)
-    
-    const miStockResta = () => {
-        if (contador >= "1") {
-            setContador(contador-1)
-        }else{
-            alert("No tenés productos agregados")
-        }
-    }
 
-    const miStockSuma = () => {
-        if (contador < props.stock) {
-            setContador(contador+1)
-        }else{
-            alert("No tenemos más stock")
-        }
-    }
+    const [contador, setContador] = useState(0)
 
     const addToCart = () => {
-        addItem(props)
+        addItem(props, contador)
         setMostrarBoton(false)
     }
 
@@ -39,14 +26,20 @@ export const ItemDetail = ({props}) => {
                 <h1>{props.nombre}</h1>
                 <p>${props.precio}</p>
                 <div className="contadorBoton">
-                    {mostrarBoton ? ( 
-                        <ItemCount 
-                            onSubstract= {miStockResta} 
-                            onAdd={miStockSuma} 
-                            count={contador}
-                            addToCart={addToCart}/>
+                    {mostrarBoton ? (
+                        <Fragment>
+                            <ItemCount 
+                                onSubstract= {miStockResta} 
+                                onAdd={miStockSuma} 
+                                count={contador}
+                                setCount = {setContador}
+                                stock = {props.stock}
+                                addToCart={addToCart}
+                            />
+                            <button onClick={addToCart} className="btnCount addCart">Agregar {contador} producto/s al carrito</button>
+                        </Fragment>
                     ) : (
-                        <button className="finalizar"><Link to='/cart'>Finalizar compra</Link></button> 
+                        <button className="btnCount finalizar"><Link to='/cart'>Finalizar compra</Link></button> 
                     )}
                 </div>
             </div>
