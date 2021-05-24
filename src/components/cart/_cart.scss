@@ -26,7 +26,12 @@
         &:hover{
             background-color: $aqua;
             color: $purple;
-    }
+        }
+        &.vaciar {
+            display: block;
+            margin-top: 2rem;
+            margin-left: 44%;
+        }
     }
     .cartVacio{
         margin: 5rem 0;

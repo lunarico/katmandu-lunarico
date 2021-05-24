@@ -1,27 +1,18 @@
-import { Fragment } from 'react';
 import './_itemCount.scss'
 
-export const ItemCount = ({onSubstract, onAdd, count, setCount, stock, item, actuallyCount}) => { 
-    
-
+export const ItemCount = ({onSubstract, onAdd, count, setter, quantity, stock}) => {    
     return (
-    <div className="contadorCont">
-        <div className="contador">
-            {actuallyCount ? (
-                <Fragment>
-                    <button onClick={() => actuallyCount(item, count)} className="resta">-</button>
-                    {count}
-                    <button onClick={() => actuallyCount(item, count)} className="suma">+</button>
-                </Fragment>
-            ) : (
-                <Fragment>
-                    <button onClick={() => onSubstract(count, setCount)} className="resta">-</button>
-                    {count}
-                    <button onClick={() => onAdd(count, setCount, stock)} className="suma">+</button>
-                </Fragment>
-            )}
+        <div className="contadorCont">
+            {stock > 0 ? (
+                <div className="contador">
+                    <button onClick={() => onSubstract(count, setter)} className="resta">-</button>
+                    {quantity}
+                    <button onClick={() => onAdd(count, setter, stock)} className="suma">+</button>
+                </div>
+            ):(
+                <p>Lo sentimos, no tenemos más stock de este producto</p>
+            )} 
         </div>
-    </div>
-  )
+    )
 }
 export default ItemCount;

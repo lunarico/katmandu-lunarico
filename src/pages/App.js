@@ -2,13 +2,10 @@ import '../components/_general.scss'
 import {BrowserRouter, Switch, Route} from 'react-router-dom'
 import {Cart} from '../components/cart/cart'
 import {CartProvider} from '../context/cartContext'
-import {Contacto} from './contacto'
-import {Envios} from './envios'
+import {Form} from '../components/form/form'
 import {ItemDetailContainer} from '../components/itemDetailContainer/itemDetailContainer'
 import {ItemListContainer} from '../components/itemListContainer/itemListContainer'
-import {MiTalle} from './miTalle'
 import {Navbar} from '../components/navBar/navBar'
-import {Productos} from './productos'
 import Logo from '../img/logo.png'
 
 function App() {
@@ -29,17 +26,8 @@ function App() {
           <Route path="/cart">
             <Cart />
           </Route>
-          <Route path='/productos'>
-            <Productos />
-          </Route>
-          <Route path='/miTalle'>
-            <MiTalle />
-          </Route>
-          <Route path='/envios'>
-            <Envios />
-          </Route>
-          <Route path='/contacto'>
-            <Contacto />
+          <Route path='/form'>
+            <Form />
           </Route>
         </Switch>
       </BrowserRouter>

@@ -19,7 +19,7 @@ export const ItemDetailContainer = () => {
         })}, [itemId])
 
     return (
-        <div class="itemDetail">
+        <div className="itemDetail">
             <ItemDetail props={item} />
         </div>
     )

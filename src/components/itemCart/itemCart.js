@@ -1,28 +1,23 @@
 import {CartContext} from "../../context/cartContext";
-import {useContext, useEffect} from "react";
 import {ItemCount} from '../itemCount/itemCount';
-import {miStockResta, miStockSuma} from '../helper/helper'
-import {useState} from 'react/cjs/react.development';
+import {useContext} from "react";
 
 export const ItemCart = ({item}) => {
 
-  const {removeFromCart, totalProductPrice, actuallyCount} = useContext(CartContext);
-  const [cartContador, setCartContador] = useState(item?.quantity)
-
+  const {removeFromCart, totalProductPrice, addQuantity, removeQuantity, setCart} = useContext(CartContext);
 
   return (
     <div className="card">
         <img src={item.imagen}></img>
         <h4>{item.nombre}</h4>
-            <ItemCount
-            onSubstract= {miStockResta} 
-            onAdd={miStockSuma} 
-            count={cartContador}
-            setCount={setCartContador}
-            stock={item.stock}
-            item = {item}
-            actuallyCount={actuallyCount}/>
-        <p>Cantidad en el carrito: {cartContador}</p>
+        <ItemCount 
+          count={item}
+          onAdd={addQuantity}
+          onSubstract={removeQuantity}
+          quantity = {item.quantity}
+          setter={setCart}
+          stock={item.stock}
+        />
         <h5>${totalProductPrice(item)}</h5>
         <button onClick={()=> removeFromCart(item.id)} className="btnCard">Quitar del carrito</button>
     </div>

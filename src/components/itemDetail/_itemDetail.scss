@@ -10,6 +10,7 @@
     text-align: center;
     width: 60%;
     img {
+        border-radius: 0.5rem;
         width: 340px;
         height: 360px;
     }
@@ -26,7 +27,7 @@
         p {
             font: $font__precio-detail;
             letter-spacing: 0.125rem;
-            margin: 2.5rem 0;
+            margin: 2.5rem 1.25rem;
         }
         .contadorBoton {
             justify-content: center;

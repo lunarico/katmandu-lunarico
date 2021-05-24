@@ -14,10 +14,10 @@ export const Navbar = () => {
             <nav>
                 <h1><Link to ='/' className="logo">Katmandú</Link></h1>
                 <ul>
-                    <li><NavLink to='/productos' activeClassName="activeLink" className="navLink">Productos</NavLink></li>
-                    <li><NavLink to='/miTalle' activeClassName="activeLink" className="navLink">Mi talle</NavLink></li>
-                    <li><NavLink to='/envios' activeClassName="activeLink" className="navLink">Envíos</NavLink></li>
-                    <li><NavLink to='/contacto' activeClassName="activeLink" className="navLink">Contacto</NavLink></li>
+                    <li><NavLink to='/category/anillos' activeClassName="activeLink" className="navLink">Anillos</NavLink></li>
+                    <li><NavLink to='/category/collares' activeClassName="activeLink" className="navLink">Collares</NavLink></li>
+                    <li><NavLink to='/category/aros' activeClassName="activeLink" className="navLink">Aros</NavLink></li>
+                    <li><NavLink to='/category/pulseras' activeClassName="activeLink" className="navLink">Pulseras</NavLink></li>
                     {cart.length > 0 && 
                     <li><NavLink to='/cart' activeClassName="activeLink" className="navLink shopping">
                             <CartWidget />

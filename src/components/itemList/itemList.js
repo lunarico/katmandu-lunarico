@@ -2,9 +2,10 @@ import '../_general.scss'
 import './_itemList.scss'
 import {getFirestore} from '../../firebase/index'
 import {Item} from '../item/item'
-import {Link} from 'react-router-dom';
 import {useEffect, useState} from 'react/cjs/react.development'
 import {useParams} from "react-router"
+import Lottie from 'react-lottie'
+import animationData from '../../loading.json'
 
 export const ItemList = () => {
 
@@ -33,22 +34,32 @@ export const ItemList = () => {
         getProducts();
     }, [categoryId])
  
+    const [animation, setAnimation] = useState({isStopped: false, isPaused: false})
+     
+    const defaultOptions = {
+        loop: true,
+        autoplay: true, 
+        animationData: animationData,
+        rendererSettings: {
+        preserveAspectRatio: 'xMidYMid slice'
+        }
+    };
+
     return (
-        <div>
-            <div className="btnProductos">
-                <Link to='/category/anillos'><p className="btnKatmandu">Anillos</p></Link>
-                <Link to='/category/collares'><p className="btnKatmandu">Collares</p></Link>
-                <Link to='/category/aros'><p className="btnKatmandu">Aros</p></Link>
-                <Link to='/category/pulseras'><p className="btnKatmandu">Pulseras</p></Link>
-            </div>
-            <div className="listaProductos">
-                {itemExists ? (items.length > 0 ? (items.map ((props) => <Item producto={props} />)
-                ) : (
-                    <p>No tenemos productos para mostrar</p>)
-                ) : (
-                    <p>Cargando...</p>
-                )}
-            </div>
+        <div className="listaProductos">
+            {itemExists ? (
+                items.length > 0 ? (items.map ((props) => <Item producto={props} />)
+            ) : (
+                <p>No tenemos productos para mostrar</p>)
+            ) : (
+                <Lottie 
+                    options={defaultOptions}
+                    height={300}
+                    width={300}
+                    isStopped={animation.isStopped}
+                    isPaused={animation.isPaused}
+                />
+            )}
         </div>
     )
 }

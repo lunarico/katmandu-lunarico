@@ -5,6 +5,7 @@ export const CartContext = createContext()
 export const CartProvider = ({children}) => {
   
     const [cart, setCart] = useState([])
+    const [contador, setContador] = useState(0)
 
     const isInCart = item => cart.find(product => product.id === item.id);
 
@@ -38,19 +39,50 @@ export const CartProvider = ({children}) => {
       return cart.map(p => totalProductPrice(p)).reduce((a,b) => a + b)
     }; 
 
-    const actuallyCount = (item, newQuantity) => {
-      const newCart = [...cart];
-      const inCart = isInCart(item);
-      if(inCart) {
-          newCart[newCart.findIndex(prod => prod.id === item.id)].quantity = newQuantity;
-          setCart(newCart);
-          console.log(inCart);
+    const onAdd = (quantity, setter, stock) => {
+      (quantity < stock) ? (setter(quantity+1)) : (alert("No tenemos más stock"))
+    };
+
+    const onSubmit = (quantity, setter) => {
+      (quantity >= 1) ? (setter(quantity-1)) : (alert("No tenés productos agregados"))
+    };
+
+    const addQuantity = (item, setter, stock) => {
+      if (item.quantity < stock) {
+        const newCart = [...cart];
+        newCart[newCart.findIndex(prod => prod.id === item.id)].quantity += 1;
+        setter(newCart);
+        return;
+      }else{
+        alert("No tenemos más stock")
       }
-  }
+    };
+
+    const removeQuantity = (item, setter) => {
+      if (item.quantity > 1) {
+        const newCart = [...cart];
+        newCart[newCart.findIndex(prod => prod.id === item.id)].quantity -= 1;
+        setter(newCart);
+        return;
+      }
+    };
 
     return (
         <CartContext.Provider 
-          value ={{cart, addItem, removeFromCart, clearCart, totalProductPrice, totalPrice, actuallyCount}}>
+          value ={{cart, 
+                  contador, 
+                  setCart, 
+                  setContador, 
+                  onAdd, 
+                  onSubmit, 
+                  addItem, 
+                  addQuantity, 
+                  removeQuantity, 
+                  removeFromCart, 
+                  clearCart, 
+                  totalProductPrice, 
+                  totalPrice  
+          }}>
           {children}
         </CartContext.Provider>
     )
