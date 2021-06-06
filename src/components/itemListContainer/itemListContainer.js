@@ -1,3 +1,4 @@
+import '../_general.scss'
 import './_itemListContainer.scss'
 import "aos/dist/aos.css"
 import {ItemList} from '../itemList/itemList'
@@ -10,10 +11,8 @@ export const ItemListContainer = (props) => {
 
     return (
         <main>
-            <div className="contHome">
-                <img src={props.logo} data-aos={"flip-left"} className="logo"></img>
-                <ItemList/>
-            </div>
+            <img src={props.logo} data-aos={"flip-left"} className="logo" alt="Logo Katmandú"></img>
+            <ItemList/>
         </main>
     )
 }

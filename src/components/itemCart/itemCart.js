@@ -1,14 +1,16 @@
+import '../_general.scss'
 import {CartContext} from "../../context/cartContext";
 import {ItemCount} from '../itemCount/itemCount';
 import {useContext} from "react";
+import './_itemCart.scss'
 
 export const ItemCart = ({item}) => {
 
   const {removeFromCart, totalProductPrice, addQuantity, removeQuantity, setCart} = useContext(CartContext);
 
   return (
-    <div className="card">
-        <img src={item.imagen}></img>
+    <div className="itemCart">
+        <img src={item.imagen} alt={item.descripcion}></img>
         <h4>{item.nombre}</h4>
         <ItemCount 
           count={item}
@@ -19,7 +21,7 @@ export const ItemCart = ({item}) => {
           stock={item.stock}
         />
         <h5>${totalProductPrice(item)}</h5>
-        <button onClick={()=> removeFromCart(item.id)} className="btnCard">Quitar del carrito</button>
+        <button onClick={()=> removeFromCart(item.id)} className="btnKatmandu">Quitar del carrito</button>
     </div>
   );
 };

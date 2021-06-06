@@ -1,19 +1,62 @@
+import '../_general.scss'
 import './_form.scss'
 import 'firebase/firestore'
+import "aos/dist/aos.css"
 import {CartContext} from "../../context/cartContext";
 import {getFirestore} from '../../firebase/index'
+import {Input} from '../input/input'
 import {Link} from 'react-router-dom';
-import {useState, useContext} from "react"
+import {useState, useContext, useEffect, Fragment} from "react"
+import AOS from 'aos'
 import firebase from 'firebase/app'
+import Logo from '../../logo.png'
 import React from 'react';
 
 export const Form = () => {
     const {cart, totalPrice, clearCart} = useContext(CartContext);
+    const [cartEmpty, setCartEmpty] = useState (false)
+    const [form, setForm] = useState({name:'', mail:'', phone:''})
+    const [isDisabled, setIsDisabled] = useState(true)
 
-    const [name, setName] = useState('')
-    const [mail, setMail] = useState('')
-    const [phone, setPhone] = useState('')
-    const [orderId, setOrderId] = useState('')
+    const formItems = [
+        {
+            id:"name",
+            label:"Nombre",
+            value:form.name
+        },{
+            id:"mail",
+            label:"Mail",
+            value:form.mail
+        },{
+            id:"phone",
+            label:"Teléfono",
+            value:form.phone
+        }
+    ]
+
+    const handleChange = (id, value) => {
+        const newForm = {...form, [id]: value}
+        setForm(newForm)
+    };
+
+    const buyOrder = () => {
+        updateStock()
+        clearCart()
+        const db = getFirestore()
+        const orders = db.collection('orders')
+        const newOrder = {
+                            buyer: form, 
+                            items: cart.map(data => ({id: data.id, 
+                                                    nombre: data.nombre, 
+                                                    precio: data.precio, 
+                                                    cantidad: data.quantity})),
+                            date: firebase.firestore.Timestamp.fromDate(new Date()),
+                            total: totalPrice(cart)
+                        }
+        orders.add(newOrder)
+        setCartEmpty(true)
+        alert(`Gracias por tu compra ${form.name}!`)
+    };
 
     const updateStock = () => {
         const db = getFirestore()
@@ -26,37 +69,33 @@ export const Form = () => {
         batch.commit()
     };
 
-    const buyOrder = (e) => {
-        updateStock()
-        clearCart()
-        e.preventDefault()
-        const db = getFirestore()
-        const orders = db.collection('orders')
-        const newOrder = {
-                            buyer: {name, mail, phone}, 
-                            items: cart,
-                            date: firebase.firestore.Timestamp.fromDate(new Date()),
-                            total: totalPrice(cart)
-                        }
-        orders.add(newOrder).then(({id}) => {
-            setOrderId(id)
-        })
-        alert(`Gracias por tu compra ${name}!`)
-    };
+    useEffect (()=> {
+        const newDisabledButton = [form.name, form.mail, form.phone].includes('')
+        setIsDisabled(newDisabledButton)
+    }, [form])
+
+    useEffect(() => {AOS.init({duration : 2000});}, [])
 
     return (
-        <form className="formulario">
-            <label for="name">Nombre</label>
-            <input onChange={(e) => setName(e.target.value)} placeholder="Nombre" type="name" name="name">
-            </input>
-            <label for="mail">Mail</label>
-            <input onChange={(e) => setMail(e.target.value)} placeholder="correo@correo.com" type="email" name="mail">
-            </input>
-            <label for="phone">Teléfono</label>
-            <input onChange={(e) => setPhone(e.target.value)} placeholder="xx-xxxxxxxx" type="phone" name="phone">
-            </input>
-            <button onClick={buyOrder}><Link to ='/'>Enviar</Link></button>
-        </form>
+        <main>
+            {!cartEmpty ? (
+            <Fragment>
+                <h1 className="titForm">Por favor completá tus datos para continuar con la compra</h1>
+                <div className="contForm">
+                    <img src={Logo} data-aos={"flip-left"} className="logoForm" alt="Logo Katmandú"></img>
+                    <form className="formulario">
+                        {formItems.map (({id, label, value}) => (
+                            <Input key={id} id={id} label={label} value={value} onChange={handleChange}/>
+                        ))}
+                    </form>
+                </div>
+                <button disabled={isDisabled} onClick={buyOrder} className="buttonForm">Enviar</button>
+            </Fragment>
+            ) : (
+            <button className="buttonForm volver">
+                <Link to ='/'>Volver al inicio</Link>
+            </button>
+            )}
+        </main>
     )
 }
-

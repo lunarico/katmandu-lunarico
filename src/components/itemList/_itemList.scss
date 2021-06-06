@@ -1,22 +1,12 @@
 @import '../colors';
 @import '../fonts';
 
-.btnProductos {
-    margin: 1rem 0;
+.productList {
     display: flex;
+    flex-wrap: wrap;
     justify-content: center;
-    .btnKatmandu {
-        background: white;
-        border: 0.125rem solid $purblue;
-        border-radius: 0.625rem;
-        margin: 0 1.5rem;
-        padding: 0rem 3rem;
-        color: $turquaise2;
-        font: $font__btn;
-        letter-spacing: 0.063rem;
-        &:hover, &:active, &:focus{
-            background-color: $aqua;
-            color:$purple;
-        }
+    margin: 1rem 5%;
+    .card {
+        border: 0.125rem solid $aqua;
     }
 }

@@ -1,17 +1,19 @@
 import '../_general.scss'
 import './_itemList.scss'
+import {CartContext} from "../../context/cartContext";
 import {getFirestore} from '../../firebase/index'
 import {Item} from '../item/item'
-import {useEffect, useState} from 'react/cjs/react.development'
+import {useEffect, useState, useContext} from 'react/cjs/react.development'
 import {useParams} from "react-router"
 import Lottie from 'react-lottie'
-import animationData from '../../loading.json'
+import {Link} from 'react-router-dom';
 
 export const ItemList = () => {
 
     const {categoryId} = useParams()
     const [items, setItems] = useState([])
     const [itemExists, setItemExists] = useState(false)
+    const {animation, defaultOptions} = useContext(CartContext);
 
     useEffect(() => {
         const getProducts = () => {
@@ -22,35 +24,28 @@ export const ItemList = () => {
                 const itemsCategory = itemCollection.where('categoryId', '==', categoryId)
                 itemsCategory.get().then(querySnapshot => {
                     const itemsFiltered = querySnapshot.docs.map(doc => ({...doc.data(), id: doc.id}));
-                    {querySnapshot !==0 && setItems((itemsFiltered), setItemExists(true))}
+                    querySnapshot !==0 && setItems((itemsFiltered), setItemExists(true))
                 })
             }else{
                 itemCollection.get().then(querySnapshot => {
                     const allItems = querySnapshot.docs.map(doc => ({...doc.data(), id: doc.id}));
-                    {querySnapshot !==0 && setItems((allItems), setItemExists(true))}
+                    querySnapshot !==0 && setItems((allItems), setItemExists(true))
                 })
             }
         }
         getProducts();
     }, [categoryId])
- 
-    const [animation, setAnimation] = useState({isStopped: false, isPaused: false})
-     
-    const defaultOptions = {
-        loop: true,
-        autoplay: true, 
-        animationData: animationData,
-        rendererSettings: {
-        preserveAspectRatio: 'xMidYMid slice'
-        }
-    };
 
     return (
-        <div className="listaProductos">
+        <div className="productList">
             {itemExists ? (
-                items.length > 0 ? (items.map ((props) => <Item producto={props} />)
-            ) : (
-                <p>No tenemos productos para mostrar</p>)
+                items.length > 0 ? 
+                    (items.map ((props, i) => <Item producto={props} key={i}/>)
+                ) : (
+                    <div className="noProducts">
+                        <p>Disculpanos, en este momento no tenemos estos productos para mostrar</p>
+                        <Link to={'/'} className="btnKatmandu">Ver nuestros productos</Link>
+                    </div>)
             ) : (
                 <Lottie 
                     options={defaultOptions}
@@ -63,3 +58,5 @@ export const ItemList = () => {
         </div>
     )
 }
+
+

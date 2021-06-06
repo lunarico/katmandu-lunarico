@@ -1,63 +1,66 @@
 @import './colors';
 @import './fonts';
 
-a {
-    text-decoration: none;
-}
-
-.listaProductos {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    margin: 2rem 5%;
-}
-
-.card {
-    border: 0.094rem solid $turquaise;
-    color: $darkGrey;
-    display: block;
-    font: $font__nombre-card;
-    padding: 0.5rem;
-    margin: 1rem 1.25rem;
-    width: 20%;
-    img {
-        width: 240px;
-        height: 270px;
-        object-fit: cover;
-    }
-    h4 {
-        letter-spacing: 0.188rem;
-        margin: 0;
-        text-transform: uppercase;
-    }
-    h5 {
-        font-size: 1.075rem;
-        margin: 0.5rem
-    }
-    p{
-        font-size: 1rem;
-
-    }
-    .btnCard {
+main {
+    margin-top: 2rem;
+    text-align: center;
+    .btnKatmandu {
         background: white;
-        border: 0.125rem solid $purblue;
         border-radius: 0.75em;
-        margin: 0.25rem 1.5rem;
-        padding: 0 1.75rem;
+        border: 0.125rem solid $purblue;
         color: $darkGrey;
-        font: $font__verMas;
-        text-decoration: none;
         cursor: pointer;
+        font: $font__verMas;
+        margin: 0 2rem;
+        padding: 0 0.5rem;
+        text-decoration: none;
         &:hover, &:focus{
             background-color: $aqua;
-            outline: none;
             color:$purblue;
+            outline: none;
+            text-decoration: none;
+        }
+        @media (min-width: 992px) {
+            margin: 0.25rem 2.25rem;
         }
     }
-}
-
-h5 {
-    font: $font__precio;
-    margin-bottom: 2rem;
-    text-transform: uppercase;
+    .btnDetail {
+        background: white;
+        border-radius: 0.5em;
+        border: 0.125rem solid $purblue;
+        color: $turquaise;
+        cursor: pointer;
+        font: $font__btn;
+        margin-top: 1rem;
+        padding: 0.5rem;
+        @media (min-width: 768px) {
+            font-size: 1.5rem;
+            margin-top: 1.25rem;
+            padding: 0.5rem 0.75rem;
+        }
+        &:hover{
+            background-color: $aqua;
+            color: $purple;
+            text-decoration: none;
+        }
+        a {
+            color: $turquaise;
+            &:hover{
+                color: $purple;
+            }
+        }
+    }
+    .noProducts {
+        margin: 50% 0;
+        @media (min-width: 768px) {
+            margin: 5% 0;
+        }
+        @media (min-width: 768px) {
+            margin: 15% 0;
+        }
+        p {
+            font: $font__text;
+            margin-bottom: 3rem;
+        }
+    }
 }

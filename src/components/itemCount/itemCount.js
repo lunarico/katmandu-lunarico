@@ -1,4 +1,6 @@
+import { Fragment } from 'react';
 import './_itemCount.scss'
+import {Link} from 'react-router-dom';
 
 export const ItemCount = ({onSubstract, onAdd, count, setter, quantity, stock}) => {    
     return (
@@ -10,7 +12,10 @@ export const ItemCount = ({onSubstract, onAdd, count, setter, quantity, stock}) 
                     <button onClick={() => onAdd(count, setter, stock)} className="suma">+</button>
                 </div>
             ):(
-                <p>Lo sentimos, no tenemos más stock de este producto</p>
+                <Fragment>
+                    <p className="noStock">Lo sentimos, no tenemos más stock de este producto</p>
+                    <Link to={'/'} className="btnDetail">Volver</Link>
+                </Fragment>
             )} 
         </div>
     )

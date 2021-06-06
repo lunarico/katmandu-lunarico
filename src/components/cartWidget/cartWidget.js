@@ -1,6 +1,8 @@
+import './_cartWidget.scss'
 import {CartContext} from '../../context/cartContext';
 import {faShoppingBag} from '@fortawesome/free-solid-svg-icons'
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome'
+import {NavLink} from 'react-router-dom';
 import {useContext, useState, useEffect} from 'react'
 
 export const CartWidget = () => {
@@ -16,9 +18,11 @@ export const CartWidget = () => {
     useEffect(() => {quantityCount(cart)}, [cart, total])    
 
     return (
-        <div>
-            <FontAwesomeIcon icon = {faShoppingBag} />
-            <p className="quantity">{total}</p>
+        <div className="cartWidget">
+            <NavLink to='/cart' activeClassName="activeLinkWidget" className="linkWidget">
+                <FontAwesomeIcon icon = {faShoppingBag} />
+                <p className="quantity">{total}</p>
+            </NavLink>
         </div>
     )
 } 

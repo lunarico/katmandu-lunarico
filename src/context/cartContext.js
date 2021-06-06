@@ -1,4 +1,5 @@
 import {createContext, useState} from "react";
+import animationData from '../loading.json'
 
 export const CartContext = createContext()
 
@@ -67,21 +68,35 @@ export const CartProvider = ({children}) => {
       }
     };
 
+    const [animation, setAnimation] = useState({isStopped: false, isPaused: false})
+    const defaultOptions = {
+        loop: true,
+        autoplay: true, 
+        animationData: animationData,
+        rendererSettings: {
+        preserveAspectRatio: 'xMidYMid slice'
+        }
+    };
+
     return (
         <CartContext.Provider 
-          value ={{cart, 
-                  contador, 
-                  setCart, 
-                  setContador, 
+          value ={{addItem, 
+                  addQuantity, 
+                  animation,
+                  cart,
+                  clearCart, 
+                  contador,
+                  defaultOptions,  
+                  isInCart, 
                   onAdd, 
                   onSubmit, 
-                  addItem, 
-                  addQuantity, 
-                  removeQuantity, 
                   removeFromCart, 
-                  clearCart, 
-                  totalProductPrice, 
-                  totalPrice  
+                  removeQuantity, 
+                  setAnimation,
+                  setCart, 
+                  setContador, 
+                  totalPrice,
+                  totalProductPrice
           }}>
           {children}
         </CartContext.Provider>
