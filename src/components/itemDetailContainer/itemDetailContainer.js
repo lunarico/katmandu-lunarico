@@ -9,6 +9,7 @@ import Lottie from 'react-lottie'
 export const ItemDetailContainer = () => {
     const {itemId} = useParams()
     const [item, setItem] = useState ({})
+    const [itemExists, setItemExists] = useState(false)
     const [loading, setloading] = useState(true)
     const {animation, defaultOptions} = useContext(AnimationContext);
     
@@ -18,9 +19,12 @@ export const ItemDetailContainer = () => {
         const producto = itemCollection.doc(itemId)
 
         producto.get().then((doc) => {
-            const data = {id: doc.id, ...doc.data(),}
-            setItem(data)
             setloading(false)
+            if (doc.exists) {
+                const data = {id: doc.id, ...doc.data(),}
+                setItem(data)
+                setItemExists(true)
+            }
         })}, [itemId])
 
     return (
@@ -33,8 +37,12 @@ export const ItemDetailContainer = () => {
                     isStopped={animation.isStopped}
                     isPaused={animation.isPaused}
                 />
-            ):(
-                <ItemDetail props={item} />
+            ) : (
+                itemExists ? (
+                    <ItemDetail props={item} />
+                ) : (
+                    <p>Lo sentimos, este producto no existe</p>
+                )
             )}
         </main>
     )
