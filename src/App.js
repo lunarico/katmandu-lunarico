@@ -1,4 +1,5 @@
 import './components/_general.scss'
+import {AnimationProvider} from './context/animationContext'
 import {BrowserRouter, Switch, Route} from 'react-router-dom'
 import {Cart} from './components/cart/cart'
 import {CartProvider} from './context/cartContext'
@@ -12,6 +13,7 @@ import Logo from './logo.png'
 function App() {
   return (
     <CartProvider>
+    <AnimationProvider>
       <BrowserRouter>
         <Navbar />
         <Switch>
@@ -33,6 +35,7 @@ function App() {
         </Switch>
         <Footer />
       </BrowserRouter>
+    </AnimationProvider>
     </CartProvider>
   )
 }

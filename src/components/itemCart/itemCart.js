@@ -1,8 +1,8 @@
 import '../_general.scss'
+import './_itemCart.scss'
 import {CartContext} from "../../context/cartContext";
 import {ItemCount} from '../itemCount/itemCount';
 import {useContext} from "react";
-import './_itemCart.scss'
 
 export const ItemCart = ({item}) => {
 
@@ -10,18 +10,18 @@ export const ItemCart = ({item}) => {
 
   return (
     <div className="itemCart">
-        <img src={item.imagen} alt={item.descripcion}></img>
-        <h4>{item.nombre}</h4>
-        <ItemCount 
-          count={item}
-          onAdd={addQuantity}
-          onSubstract={removeQuantity}
-          quantity = {item.quantity}
-          setter={setCart}
-          stock={item.stock}
-        />
-        <h5>${totalProductPrice(item)}</h5>
-        <button onClick={()=> removeFromCart(item.id)} className="btnKatmandu">Quitar del carrito</button>
+      <img src={item.imagen} alt={item.descripcion}></img>
+      <h4>{item.nombre}</h4>
+      <ItemCount 
+        count={item}
+        onAdd={addQuantity}
+        onSubstract={removeQuantity}
+        quantity = {item.quantity}
+        setter={setCart}
+        stock={item.stock}
+      />
+      <h5>${totalProductPrice(item)}</h5>
+      <button onClick={()=> removeFromCart(item.id)} className="btnKatmandu">Quitar del carrito</button>
     </div>
   );
 };

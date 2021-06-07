@@ -1,5 +1,5 @@
 import './_itemDetailContainer.scss'
-import {CartContext} from "../../context/cartContext";
+import {AnimationContext} from "../../context/animationContext";
 import {getFirestore} from '../../firebase'
 import {ItemDetail} from '../itemDetail/itemDetail'
 import {useEffect, useState, useContext} from "react/cjs/react.development"
@@ -10,7 +10,7 @@ export const ItemDetailContainer = () => {
     const {itemId} = useParams()
     const [item, setItem] = useState ({})
     const [loading, setloading] = useState(true)
-    const {animation, defaultOptions} = useContext(CartContext);
+    const {animation, defaultOptions} = useContext(AnimationContext);
     
     useEffect(() => {
         const db = getFirestore()

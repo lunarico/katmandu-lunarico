@@ -1,5 +1,4 @@
 import {createContext, useState} from "react";
-import animationData from '../loading.json'
 
 export const CartContext = createContext()
 
@@ -11,7 +10,6 @@ export const CartProvider = ({children}) => {
     const isInCart = item => cart.find(product => product.id === item.id);
 
     const addItem = (item, quantity) => {
-
       if(isInCart(item)) {
         const newCart = [...cart]
         newCart[newCart.findIndex(prod => prod.id === item.id)].quantity += quantity;
@@ -20,7 +18,6 @@ export const CartProvider = ({children}) => {
       }
         item.quantity = quantity;
         setCart([...cart, item])
-
     };
 
     const removeFromCart = (itemId) => {
@@ -68,31 +65,18 @@ export const CartProvider = ({children}) => {
       }
     };
 
-    const [animation, setAnimation] = useState({isStopped: false, isPaused: false})
-    const defaultOptions = {
-        loop: true,
-        autoplay: true, 
-        animationData: animationData,
-        rendererSettings: {
-        preserveAspectRatio: 'xMidYMid slice'
-        }
-    };
-
     return (
         <CartContext.Provider 
           value ={{addItem, 
                   addQuantity, 
-                  animation,
                   cart,
                   clearCart, 
-                  contador,
-                  defaultOptions,  
+                  contador, 
                   isInCart, 
                   onAdd, 
                   onSubmit, 
                   removeFromCart, 
                   removeQuantity, 
-                  setAnimation,
                   setCart, 
                   setContador, 
                   totalPrice,

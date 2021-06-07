@@ -7,7 +7,7 @@ Es un **sitio e-commerce** realizado como Proyecto Final del curso de React de C
 En la página de Katmandú se ofrecen accesorios como anillos, collares, aros y pulseras
 
 <p align='center'>
-<img src='./gifKatmandu.gif' width='600' alt='npm start'>
+<img src='./gifKatmandu.gif' width='500' alt='npm start'>
 </p>
 
 ## Inicialización del proyecto
@@ -32,7 +32,7 @@ Cada componente tiene su propio estilos, únicamente comparten el estilo de los 
 ## Datos
 Los datos de la página (productos) provienen de *Firestore* (servicio ofrecido por **Firebase**). Comando:
 ```
-npm install node-sass --save
+npm install --save fiirebase
 ```
 Para confirmar la compra, el usuario debe llenar un formulario con nombre, mail y contraseña. Una vez confirmada la compra, el stock se actualiza en tiempo real, y los datos del comprador quedan guardados en una órden específica dentro de una colección del *Firestore*
 

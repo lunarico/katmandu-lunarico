@@ -1,19 +1,19 @@
 import '../_general.scss'
 import './_itemList.scss'
-import {CartContext} from "../../context/cartContext";
+import {AnimationContext} from "../../context/animationContext";
 import {getFirestore} from '../../firebase/index'
 import {Item} from '../item/item'
+import {Link} from 'react-router-dom';
 import {useEffect, useState, useContext} from 'react/cjs/react.development'
 import {useParams} from "react-router"
 import Lottie from 'react-lottie'
-import {Link} from 'react-router-dom';
 
 export const ItemList = () => {
 
     const {categoryId} = useParams()
     const [items, setItems] = useState([])
     const [itemExists, setItemExists] = useState(false)
-    const {animation, defaultOptions} = useContext(CartContext);
+    const {animation, defaultOptions} = useContext(AnimationContext);
 
     useEffect(() => {
         const getProducts = () => {
@@ -58,5 +58,3 @@ export const ItemList = () => {
         </div>
     )
 }
-
-

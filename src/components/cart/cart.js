@@ -1,8 +1,8 @@
 import '../_general.scss'
 import './_cart.scss'
 import {CartContext} from "../../context/cartContext";
-import {ItemCart} from '../itemCart/itemCart'
 import {Fragment, useContext} from "react";
+import {ItemCart} from '../itemCart/itemCart'
 import {Link} from 'react-router-dom';
 
 export const Cart = () => {
